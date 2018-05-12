@@ -2,40 +2,40 @@ import random
 class Game:
   def __init__(self):
     self.state = ["green","red","yellow","blue"]
-    self.sequence = []
+    self.sequence = [(random.randint(0,3))]
+    self.moves = []
+    self.game_over=False
   def __repr__(self):
     return "Game({})".format(self.state)
     
   def __str__(self):
     return "{} {}\n{} {}\n".format(*self.state)
     
-  def has_lost(self,moves):
-    if moves == self.sequence:
-      return False
-    print("LOST")
   def move(self):
     while True:
       try:
         pick = str(input("Pick a color dude: "))
-        moves = int(pick)
-        self.sequence.append(random.randint(0,3))
-        if moves not in range(4):
+        self.moves.append(int(pick))
+        if self.moves[-1] not in range(4):
           raise ValueError
         break
       except ValueError:
         print("I dont know what you did but its wrong")
+        print(self)
   def play(self):
-    while not self.has_lost:
+    while not self.game_over:
       print(self)
-      self.move()
       print(self.sequence)
-      if self.has_won(you):
-        print('{} wins'.format(you))
+      self.move()
+      self.sequence.append(random.randint(0,3))
+      if self.moves[-1]==self.sequence[-1]:
         self.game_over = True
         print(self)
+        print(self.sequence)
         break
     
-a = Game()
-a.play()
+if __name__ == "__main__":
+  a = Game()
+  a.play()
     
     
