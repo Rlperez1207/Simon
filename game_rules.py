@@ -14,8 +14,10 @@ class Game:
   def move(self):
     while True:
       try:
-        pick = str(input("Pick a color dude: "))
-        self.moves.append(int(pick))
+        self.moves = []
+        for i in range(len(self.sequence)):
+          pick = str(input("Pick a color dude: "))
+          self.moves.append(int(pick))
         if self.moves[-1] not in range(4):
           raise ValueError
         break
@@ -26,13 +28,13 @@ class Game:
     while not self.game_over:
       print(self)
       print(self.sequence)
+      print(self.moves)
       self.move()
-      self.sequence.append(random.randint(0,3))
-      if self.moves[-1]==self.sequence[-1]:
+      if not self.moves==self.sequence:
         self.game_over = True
-        print(self)
-        print(self.sequence)
-        break
+        print("YOU LOSE")
+      if not self.game_over:
+        self.sequence.append(random.randint(0,3))
     
 if __name__ == "__main__":
   a = Game()
