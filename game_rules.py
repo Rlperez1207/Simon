@@ -1,3 +1,7 @@
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.image import Image
+from kivy.uix.boxlayout import BoxLayout
 import random
 class Game:
   def __init__(self):
