@@ -2,6 +2,8 @@ from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
+from kivy.properties import NumericProperty, ReferenceListProperty,\
+    ObjectProperty
 import random
 
 class Widgets(Widget):
@@ -16,9 +18,12 @@ class TestApp(GridLayout):
         self.add_widget(Button(text='Blue'))
 class simon(App):
     def build(self):
-        return Widgets()
+        re= Game()
+        re.play()
+        return re
 
-class Game:
+class Game(Widget):
+
   def __init__(self):
     self.state = ["green","red","yellow","blue"]
     self.sequence = [(random.randint(0,3))]
@@ -57,5 +62,3 @@ class Game:
 
 if __name__ == "__main__":
   simon().run()
-  a = Game()
-  a.play()
