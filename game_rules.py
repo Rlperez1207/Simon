@@ -16,26 +16,14 @@ class TestApp(GridLayout):
         self.add_widget(Button(text='Red'))
         self.add_widget(Button(text='Yellow'))
         self.add_widget(Button(text='Blue'))
-class simon(App):
-    def build(self):
-        re= Game()
-        re.play()
-        return re
 
-class Game(Widget):
+class The_game(Widget):
 
-  def __init__(self):
+  def move(self):
     self.state = ["green","red","yellow","blue"]
     self.sequence = [(random.randint(0,3))]
     self.moves = []
-    self.game_over=False
-  def __repr__(self):
-    return "Game({})".format(self.state)
-
-  def __str__(self):
-    return "{} {}\n{} {}\n".format(*self.state)
-
-  def move(self):
+    self.game_over = False
     while True:
       try:
         self.moves = []
@@ -49,16 +37,19 @@ class Game(Widget):
         print("I dont know what you did but its wrong")
         print(self)
   def play(self):
+    self.game_over = False
     while not self.game_over:
-      print(self)
-      print(self.sequence)
-      print(self.moves)
       self.move()
       if not self.moves==self.sequence:
         self.game_over = True
         print("YOU LOSE")
       if not self.game_over:
         self.sequence.append(random.randint(0,3))
+class simon(App):
+    def build(self):
+        re= The_game()
+        re.play()
+        return re
 
 if __name__ == "__main__":
   simon().run()
