@@ -1,17 +1,30 @@
 <The_Game>:
     Button:
-        background_color:1,0,0,1
-        pos: 100,100
+        background_color: root.r,root.z,root.z,root.r
+        pos: 400,200
+        on_release: root.pick = int(0)
     Button:
-        background_color:0,0,1,1
-        pos: 100,0
+        background_color:root.r,root.z,root.z,root.r
+        pos: 400,100
+        on_release: root.pick = int(1)
     Button:
-        background_color:0,1,0,1
-        pos: 0,100
+        background_color:root.r,root.z,root.z,root.r
+        pos: 300,200
+        on_release: root.pick = int(2)
     Button:
-        background_color:1,1,0,1
-        pos:0,0
+        background_color: root.r,root.z,root.z,root.r
+        pos:300,100
+        on_release: root.pick = int(3)
     Button:
-        pos: 300,300
+        pos: 300,400
         text: "Start"
         on_release: root.play()
+    Label:
+        pos: 350,500
+        text: "Simon Memory Game"
+    Button:
+        pos: 400,400
+        text: "Quit"
+        on_release: quit()
+    Label:
+        text: "Score: " + str(root.score)
